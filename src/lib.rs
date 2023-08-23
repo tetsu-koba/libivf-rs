@@ -4,9 +4,7 @@ use std::fs::File;
 use std::io;
 use std::io::{Read, Seek, SeekFrom, Write};
 
-const IVF_SIGNATURE: &[u8; 4] = b"DKIF";
-pub const IVF_HEADER_SIZE: usize = 32;
-pub const IVF_FRAME_HEADER_SIZE: usize = 12;
+pub const IVF_SIGNATURE: &[u8; 4] = b"DKIF";
 
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq)]
