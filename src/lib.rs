@@ -119,6 +119,7 @@ impl Drop for IvfWriter {
             let _ = self
                 .file
                 .write_u32::<byteorder::LittleEndian>(self.frame_count);
+            let _ = self.file.seek(SeekFrom::End(0));
         }
     }
 }
