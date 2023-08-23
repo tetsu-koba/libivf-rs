@@ -9,7 +9,7 @@ pub const IVF_HEADER_SIZE: usize = 32;
 pub const IVF_FRAME_HEADER_SIZE: usize = 12;
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct IvfHeader {
     pub signature: [u8; 4],
     pub version: u16,
@@ -24,7 +24,7 @@ pub struct IvfHeader {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct IvfFrameHeader {
     pub frame_size: u32,
     pub timestamp: u64,
