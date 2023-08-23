@@ -115,7 +115,7 @@ impl IvfWriter {
 
 impl Drop for IvfWriter {
     fn drop(&mut self) {
-        if let Ok(_) = self.file.seek(SeekFrom::Start(24)) {
+        if self.file.seek(SeekFrom::Start(24)).is_ok() {
             let _ = self
                 .file
                 .write_u32::<byteorder::LittleEndian>(self.frame_count);
