@@ -19,7 +19,7 @@ fn check_ivf(filename: &str) -> Result<(), Box<dyn Error>> {
     loop {
         match reader.read_ivf_frame_header() {
             Ok(ivf_frame_header) => {
-                assert_eq!(ivf_frame_header.timestamp, frame_index as u64);
+                assert_eq!(ivf_frame_header.timestamp, frame_index as _);
                 reader.skip_frame(ivf_frame_header.frame_size)?;
             }
             Err(e) if e.kind() == ErrorKind::UnexpectedEof => break,
@@ -54,10 +54,9 @@ fn copy_ivf(filename: &str, outfilename: &str) -> Result<(), Box<dyn Error>> {
     loop {
         match reader.read_ivf_frame_header() {
             Ok(ivf_frame_header) => {
-                assert_eq!(ivf_frame_header.timestamp, frame_index as u64);
-                let len = reader.read_frame(&mut buf[..ivf_frame_header.frame_size as usize])?;
-                assert_eq!(ivf_frame_header.frame_size as usize, len);
-                writer.write_ivf_frame(&buf[..len], ivf_frame_header.timestamp)?;
+                assert_eq!(ivf_frame_header.timestamp, frame_index as _);
+                reader.read_frame(&mut buf[..ivf_frame_header.frame_size as _])?;
+                writer.write_ivf_frame(&buf[..ivf_frame_header.frame_size as _], ivf_frame_header.timestamp)?;
             }
             Err(e) if e.kind() == ErrorKind::UnexpectedEof => break,
             Err(e) => return Err(Box::new(e)),
