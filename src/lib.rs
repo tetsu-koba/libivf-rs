@@ -70,9 +70,9 @@ impl IvfReader {
         Ok(frame_header)
     }
 
-    pub fn read_frame(&mut self, frame: &mut [u8]) -> io::Result<usize> {
-        let size = self.file.read(frame)?;
-        Ok(size)
+    pub fn read_frame(&mut self, frame: &mut [u8]) -> io::Result<()> {
+        self.file.read_exact(frame)?;
+        Ok(())
     }
 
     pub fn skip_frame(&mut self, frame_size: u32) -> io::Result<()> {
