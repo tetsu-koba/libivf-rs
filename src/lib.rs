@@ -22,7 +22,7 @@ pub struct IvfHeader {
 }
 
 #[repr(C)]
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Default, PartialEq, Eq)]
 pub struct IvfFrameHeader {
     pub frame_size: u32,
     pub timestamp: u64,
