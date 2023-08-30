@@ -18,7 +18,7 @@ pub struct IvfHeader {
     pub framerate_num: u32,
     pub framerate_den: u32,
     pub num_frames: u32,
-    unused: u32,
+    pub unused: u32,
 }
 
 #[repr(C)]
